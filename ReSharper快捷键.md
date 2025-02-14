@@ -31,3 +31,29 @@ Alt + Up / Down跳到下/上一个方法
 
 Shift + F6 方法更名
 Ctrl + Alt + M 将选定块抽
+
+### 模板
+
+Ctrl + J 插入模板（输出，循环，if-else）
+
+内置模板:（例如用法：在某些变量后接.var）
+asrt 生成assertion
+ear生成空数组
+foreach 生成foreach 块
+ital生成ArrayList的迭代循环
+itar 生成array的迭代循环
+itdic 生成dictionary的迭代循环
+
+loop生成loop循环
+out 打印串
+outv 打印变量值
+pci public const int
+pcs public const string
+pro protected
+psr public static readonly
+psvm main() method declaration
+
+ritar Iterate an array in reverse order
+sfc Safely cast variable
+thr throw new
+toar 将ArrayList 转化为array
