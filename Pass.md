@@ -4,5 +4,5 @@ Pass
 | -------- | --------------------- | --------------- | ---- |
 | Bentley  | hongzh@power-itech.cn | Hzh951126       |      |
 | JetBrain | jgouyuan@163.com      | buyaoxiugaimima |      |
-|          |                       |                 |      |
+| CAD看图  | 17363759105           | lsl2375525647   |      |
 
