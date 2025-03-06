@@ -24,6 +24,26 @@
 
 
 
+## vec.DifferenceOf
+
+void DifferenceOf  (DPoint3dCR target, DPoint3dCR base);
+
+通过起止点确定向量方向
+
+
+
+## ptStart.SumOf
+
+void SumOf (DPoint3dCR origin, DVec3dCR vector, double scale);
+
+向某个方向移动点，注意它会用向量长度，有必要可以先把向量归零
+
+
+
+
+
+
+
 mdlElmdscr_extractNormal	寻找元素的法向量
 mdlElmdscr_computeRange	计算指定元素描述符中元素的范围
 mdlElmdscr_add	元素加入显示模型
