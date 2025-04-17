@@ -40,6 +40,54 @@ void SumOf (DPoint3dCR origin, DVec3dCR vector, double scale);
 
 
 
+## vec.DotProduct
+
+使用点积计算向量之间的关系，一般来说：
+当两个方向向量相等时点乘结果为1
+当两个方向向量垂直时点乘结果为0
+当两个方向向量相反时点乘结果为-1
+
+工程建模中需要一定容差，目前采用0.1
+
+使用绝对值>0.9判定平行
+
+abs(vec.DotProduct(DVec3d::UnitZ())) > 0.9
+
+
+
+## mdlVec_projectPointToLineInView
+
+尽量不要用这个函数，目前不理解为什么有时不遵守视图规则
+
+
+
+## mdlVec_projectPointToLine
+
+MSCORE_EXPORT StatusInt mdlVec_projectPointToLine
+(
+    DPoint3dP outPointP,       // [out]  计算出的投影点
+    double* outFractionP,      // [out]  投影点在线段上的比例参数
+    DPoint3dCP inPpointP,      // [in]   需要投影的点
+    DPoint3dCP startPointP,    // [in]   直线起点
+    DPoint3dCP endPointP       // [in]   直线终点
+);
+
+`outPointP`（输出）: 计算得到的 **投影点坐标**。
+
+`outFractionP`（输出）: 计算得到的 **投影参数**，表示投影点相对于 `startPointP` 的位置：
+
+- `0.0` 代表 `startPointP`，
+- `1.0` 代表 `endPointP`，
+- `0.5` 代表中点，
+- `< 0` 代表投影点在线段外的 `startPointP` 延长线上，
+- `> 1` 代表投影点在线段外的 `endPointP` 延长线上。
+
+`inPpointP`（输入）: 需要投影的点。
+
+`startPointP`（输入）: 定义直线的 **起点**。
+
+`endPointP`（输入）: 定义直线的 **终点**。
+
 
 
 
@@ -64,8 +112,8 @@ mdlVec_projectPointToLine 	计算一个点在由两点定义的直线上的投�
 mdlLinear_extract	从线性元素中提取坐标数组
 mdlIntersect_allBetweenExtendedElms	获取两个元素无线扩展后之间的所有交点。
 DSegment3d::IntersectXY	求两线段（无线延申）的交点
-mdlVec_intersect	求两线段的交点
-CurveCurve::IntersectionsXY	求交
+mdlVec_intersect	求三维直线无限延伸的交点
+CurveCurve::IntersectionsXY	二维直线XOY平面求交
 mdlVec_projectPointToPlane 投影点到面
 mdlArc_extract 
 求向量的垂直向量：crossproduct（叉乘）
