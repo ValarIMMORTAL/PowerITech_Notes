@@ -90,6 +90,31 @@ MSCORE_EXPORT StatusInt mdlVec_projectPointToLine
 
 
 
+## SolidUtil::Locate
+
+获取射线与实体的所有交点
+
+```c++
+bool GetIntersectPointsWithDescr(vector<DPoint3d>& interPoints, MSElementDescrP descrP,
+	DPoint3d startPt, DPoint3d endPt, DgnModelRefP dgnModelRef)
+{
+	// 创建射线
+	DRay3d ray3d;
+	ray3d.InitFromOriginAndTarget(startPt, endPt);
+	// 求射线与所有被锚固构件的交点
+	bvector<DPoint3d> intersectPts;
+	EditElementHandle eeh(descrP, true, false, dgnModelRef);
+	if (!eeh.IsValid())
+		return false; // 墙体无效
+	ISolidKernelEntityPtr solidEntity;
+	if (SUCCESS != SolidUtil::Convert::ElementToBody(solidEntity, eeh))
+	return false;
+}
+```
+
+
+在三维中根据射线方向，获取与元素的所有交点，支持一定误差值
+
 
 
 mdlElmdscr_extractNormal	寻找元素的法向量
