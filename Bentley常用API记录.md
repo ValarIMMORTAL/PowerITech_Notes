@@ -285,3 +285,74 @@ MB：设备基础
 	SelectionSetManager::GetManager().BuildAgenda(selectedElement);
 
 mdlDialog_dmsgsPrint(seedFolder.data());
+
+## 矩阵变换
+
+### 坐标系转换
+
+mdlTMatrix_masterToReference：返回从主文件坐标系到参考文件坐标系的变换矩阵。若 modelRef 无效则返回非 SUCCESS 值。
+mdlTMatrix_referenceToMaster：返回从参考文件坐标系到主文件坐标系的变换矩阵。若 modelRef 无效则返回非 SUCCESS 值。
+
+### 弧（椭圆）变换
+
+mdlTMatrix_transformArc：对弧（椭圆）应用变换。会修改椭圆的长轴、短轴长度，旋转矩阵，起始角度和扫描角度等参数。
+
+### 文本放置变换组合
+
+mdlTMatrix_composeOrientationOriginScaleXY：以适用于文本放置的形式组合变换，形式为 OUT = TRANSFORM * TRANSLATE * MATRIX * SCALE。
+mdlTMatrix_composeOrientationOriginScaleXYShear：以适用于文本放置的形式组合变换，形式为 OUT = TRANSFORM * TRANSLATE * MATRIX * SLANT * SCALE。
+
+### 矩阵行列操作
+
+mdlTMatrix_setMatrixColumn：将 DVec3d 数据复制到变换矩阵的指定列。
+mdlTMatrix_setMatrixRow：将 DVec3d 数据复制到变换矩阵的指定行。
+mdlTMatrix_getMatrixColumn：复制变换矩阵的指定列。
+mdlTMatrix_getMatrixRow：复制变换矩阵的指定行。
+
+### 变换矩阵属性检查与设置
+
+mdlTMatrix_isIdentity：检查变换矩阵是否为单位矩阵（平移部分为零，矩阵部分为单位矩阵）。
+mdlTMatrix_getIdentity：将变换矩阵设置为单位矩阵。
+
+### 变换矩阵初始化
+
+mdlTMatrix_rotateAndTranslate：使用指定的矩阵和平移部分初始化变换矩阵及其逆矩阵。
+mdlTMatrix_fromRMatrix：将 RotMatrix 复制到变换矩阵的 3x3 矩阵部分，并将平移部分设置为零。
+mdlTMatrix_fromTranslationAndColumns：使用给定的平移和列向量填充变换矩阵。
+mdlTMatrix_fromTranslationAndXYPoints：使用给定的平移和 x、y 轴目标点填充变换矩阵。
+
+### 变换矩阵信息获取
+
+mdlTMatrix_getTranslation：从变换矩阵中复制平移列。
+mdlTMatrix_getTranslationAndColumns：从变换矩阵中复制平移列和矩阵的三列。
+
+### 矩阵运算
+
+mdlTMatrix_multiply：将两个变换矩阵相乘。
+mdlTMatrix_rotateByAngles：将输入变换矩阵按 x、y、z 轴旋转指定角度。
+mdlTMatrix_rotateByRMatrix：将输入变换矩阵乘以 RotMatrix。
+mdlTMatrix_transformVector：将变换矩阵的矩阵部分乘以向量。
+mdlTMatrix_scale：按指定比例缩放变换矩阵的列。
+mdlTMatrix_scaleCompleteRows：按指定比例缩放变换矩阵的行。
+
+### 变换矩阵设置
+
+mdlTMatrix_setOrigin：设置变换矩阵的原点，使 originP 成为变换的固定点。
+mdlTMatrix_setTranslation：将变换矩阵的平移列设置为指定坐标。
+
+### 点和范围变换
+
+mdlTMatrix_transformPoint：对单个点应用变换矩阵。
+mdlTMatrix_transformPointArray：对一系列点应用变换矩阵。
+mdlTMatrix_transformRange：对范围立方体的顶点应用变换，并返回变换后范围立方体的最小和最大点。
+
+### 其他变换操作
+
+mdlTMatrix_translate：对输入变换矩阵进行平移操作。
+mdlTMatrix_transpose：对变换矩阵的 3x3 矩阵部分进行转置。mdlTMatrix_getInverse：计算变换矩阵的逆矩阵，若可逆返回 SUCCESS。
+mdlTMatrix_containsReflection：检查变换矩阵是否包含反射操作。
+mdlTMatrix_computeFlattenTransform：构造一个将几何体投影到平面的变换矩阵。
+mdlTMatrix_fromMirrorPlane：构造一个关于给定平面对称的变换矩阵。
+mdlTMatrix_fromPointAndScale：构造一个关于给定点缩放的变换矩阵。
+mdlTMatrix_fromRotationAroundPointAndVector：构造一个绕给定直线旋转的变换矩阵。
+mdlTMatrix_fromRotationAroundLine：构造一个绕由两点确定的直线旋转的变换矩阵。
